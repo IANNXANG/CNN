@@ -2,7 +2,8 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-from train_task2 import CNN  # 修改为对应的模型类
+from train_task1 import CNN  # 修改为对应的模型类
+from train_task2 import CNN_Modified  # 修改为对应的模型类
 from train_task3 import CNN_WithDropout  # 导入带 Dropout 的模型
 
 # 加载数据集
@@ -10,7 +11,7 @@ transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5
 test_dataset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
 test_loader = DataLoader(dataset=test_dataset, batch_size=64, shuffle=False)
 
-# 测试任务 1 模型
+# 测试任务
 def test_model(model_class, model_path):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model_class().to(device)
@@ -32,7 +33,7 @@ def test_model(model_class, model_path):
 
 # 测试各个任务的模型
 accuracy_task1 = test_model(CNN, 'mnist_cnn_TASK1.pth')
-accuracy_task2 = test_model(CNN, 'mnist_cnn_TASK2.pth')
+accuracy_task2 = test_model(CNN_Modified, 'mnist_cnn_TASK2.pth')
 
 # 测试带有不同 Dropout 概率的模型
 dropout_probs = [0.01, 0.05, 0.1]
