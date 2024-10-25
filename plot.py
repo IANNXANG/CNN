@@ -1,11 +1,15 @@
 import torch
 import matplotlib.pyplot as plt
 
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 设置中文字体为黑体
+plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
+
+
 # 定义绘制函数
 def plot_losses(losses, title, filename):
     plt.figure()
     plt.plot(losses, label='Training Loss')
-    plt.xlabel('Epoch')
+    plt.xlabel('Steps')
     plt.ylabel('Loss')
     plt.title(title)
     plt.legend()
