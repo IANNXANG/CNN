@@ -15,7 +15,10 @@ test_loader = DataLoader(dataset=test_dataset, batch_size=64, shuffle=False)
 def test_model(model_class, model_path):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model_class().to(device)
-    model.load_state_dict(torch.load(model_path))
+    if device == 'cuda':
+        model.load_state_dict(torch.load(model_path))
+    else:
+        model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
     model.eval()
 
     correct = 0
