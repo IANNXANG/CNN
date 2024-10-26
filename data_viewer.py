@@ -26,3 +26,15 @@ images, labels = next(iter(train_loader))
 # 打印批次数据的形状
 print(f'批次图像形状: {images.shape}')  # 应为 (64, 1, 28, 28)
 print(f'批次标签形状: {labels.shape}')  # 应为 (64,)
+
+# 打印训练集中前10个数据
+for i in range(10):
+    image, label = train_dataset[i]
+    print(f'图像 {i + 1} 的标签: {label}')
+    print(f'图像 {i + 1} 的形状: {image.shape}')
+    print(f'图像 {i + 1} 的数据类型: {image.dtype}')
+    print('-' * 50)
+    print(f'图像 {i + 1} 的像素值:')
+    # 将图像转换为28x28的矩阵并打印
+    print(image.reshape(28, 28))
+
